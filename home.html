@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serenity Counseling | Premium Therapy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --primary-dark: #554FD8;
+      --accent: #FF6B8B;
+      --accent-light: #FFA5B6;
+      --text-dark: #1A1A2E;
+      --text-light: #f8f9fa;
+      --background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(40px);
+    }
+
+    .shape-1 {
+      width: 500px;
+      height: 500px;
+      background: var(--primary);
+      top: -200px;
+      right: -100px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      bottom: -150px;
+      left: -100px;
+      animation: float 25s infinite ease-in-out reverse;
+    }
+
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary-dark);
+      top: 50%;
+      left: 10%;
+      animation: float 30s infinite ease-in-out;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
+    }
+
+    .nav-cta:hover::after {
+      width: 0;
+    }
+
+    .hero {
+      min-height: 130vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 3.5rem;
+      animation: fadeUp 1.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--text-dark);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--accent-light));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(108, 99, 255, 0.5);
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+    }
+
+    .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: -1rem -1rem; /* was 5rem 2rem */
+}
+
+  
+    section {
+      margin-bottom: 6rem;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+      position: relative;
+      font-family: 'Playfair Display', serif;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 25px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 2.5rem;
+      transition: var(--transition);
+    }
+
+    .about-text:hover {
+      transform: translateY(-8px);
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .about-image {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 25px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      border-radius: 25px;
+    }
+
+    .about-image-placeholder {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: var(--text-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .service-card p {
+      line-height: 1.6;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .contact-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .contact-card p {
+      color: var(--text-dark);
+      font-size: 1rem;
+    }
+
+    .book-section {
+      text-align: center;
+    }
+
+    .book-content {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 25px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 3.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      transition: var(--transition);
+    }
+
+    .book-content:hover {
+      transform: translateY(-8px);
+    }
+
+    .book-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--text-dark);
+    }
+
+    footer {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-top: 1px solid var(--glass-border);
+      padding: 3rem 2rem 2rem;
+      color: var(--text-dark);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--text-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .footer-about p {
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-link {
+      width: 38px;
+      height: 38px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid var(--glass-border);
+    }
+
+    .social-link:hover {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-links h3, .footer-contact h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .footer-links ul, .footer-contact ul {
+      list-style: none;
+    }
+
+    .footer-links li, .footer-contact li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a, .footer-contact a {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover, .footer-contact a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    /* Stats Section */
+ .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 5rem 0 10rem; /* top, sides, bottom spacing */
+}
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      .hero-content {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-image {
+        height: 280px;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content {
+        padding: 2rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      section h2 {
+        font-size: 1.7rem;
+      }
+
+      .service-card, .contact-card, .book-content {
+        padding: 2rem 1.2rem;
+      }
+
+      .about-text {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">SC</div>
+      <div class="logo-text">Serenity Counseling</div>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="book.html" class="nav-cta">Book Now</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Your Journey to Mental Wellness Begins Here</h1>
+      <p>Compassionate counseling for individuals, couples, and teens. Private, professional, and confidential support tailored to your needs.</p>
+      <a href="book.html" class="cta-button">
+        <span>Book Your Session</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Stats Section -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="years">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="clients">0</div>
+        <div class="stat-label">Clients Helped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="satisfaction">0%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="support">24/7</div>
+        <div class="stat-label">Support Available</div>
+      </div>
+    </div>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>At Serenity Counseling, we provide a safe, non-judgmental space for you to explore life's challenges. Our licensed professionals use evidence-based therapies to help you cope with stress, anxiety, trauma, and more.</p>
+          <p>We believe in the power of therapy to transform lives. Our approach is client-centered, focusing on your unique needs and goals to help you achieve lasting positive change.</p>
+          <p>With over 15 years of experience, our team is dedicated to providing the highest quality care in a warm and welcoming environment.</p>
+        </div>
+        <div class="about-image">
+          <img src="img/photo_6014845190172430057_x.jpg" alt="Professional Therapist" onerror="this.style.display='none'; document.querySelector('.about-image-placeholder').style.display='flex';">
+          <div class="about-image-placeholder" style="display: none;">
+            <i class="fas fa-user-tie" style="font-size: 3rem; opacity: 0.7;"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Individual Therapy</h3>
+          <p>Personalized one-on-one counseling to help manage stress, depression, and life transitions. We work with you to develop coping strategies and build resilience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Couples Counseling</h3>
+          <p>Supportive sessions to rebuild trust, improve communication, and strengthen relationships. We help couples navigate challenges and deepen their connection.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-user-friends"></i>
+          </div>
+          <h3>Teen Support</h3>
+          <p>Helping adolescents navigate peer pressure, identity, school stress, and emotional health. We provide a safe space for teens to express themselves and develop coping skills.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p>support@serenitycounseling.org</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Phone</h3>
+          <p>+2348145227367</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Location</h3>
+          <p>45 Harmony Avenue, Abuja, Nigeria</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="book" class="book-section">
+      <h2>Book an Appointment</h2>
+      <div class="book-content">
+        <p>To schedule a session, please contact us by email or phone. We offer flexible appointment times including evenings and weekends to accommodate your schedule. Your first consultation is completely free.</p>
+        <a href="book.html" class="cta-button">
+          <span>Book Now</span>
+          <i class="fas fa-calendar-check"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-about">
+        <div class="footer-logo">Serenity Counseling</div>
+        <p>Providing professional psychological support and therapy services to help you navigate life's challenges and achieve mental wellness.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="book.html">Book Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Info</h3>
+        <ul>
+          <li><i class="fas fa-envelope"></i> support@serenitycounseling.org</li>
+          <li><i class="fas fa-phone"></i> +2348145227367</li>
+          <li><i class="fas fa-map-marker-alt"></i> 45 Harmony Avenue, Abuja</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Serenity Counseling. All rights reserved. | Designed with care for your mental wellness.
+    </div>
+  </footer>
+
+  <script>
+    // Add scroll effect to header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.padding = '0.8rem 2rem';
+        header.style.backdropFilter = 'blur(20px)';
+      } else {
+        header.style.padding = '1.2rem 2rem';
+        header.style.backdropFilter = 'blur(15px)';
+      }
+    });
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Handle image loading errors
+    document.addEventListener('DOMContentLoaded', function() {
+      const aboutImage = document.querySelector('.about-image img');
+      if (aboutImage) {
+        aboutImage.onerror = function() {
+          this.style.display = 'none';
+          document.querySelector('.about-image-placeholder').style.display = 'flex';
+        };
+      }
+    });
+
+    // Animated Stats Counter
+    function animateCounter(element, start, end, duration, suffix = '') {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentValue = Math.floor(progress * (end - start) + start);
+        element.textContent = currentValue + suffix;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Initialize counters when stats section comes into view
+    const statsSection = document.querySelector('.stats');
+    let countersAnimated = false;
+
+    function checkIfInView() {
+      const rect = statsSection.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0
+      );
+    }
+
+    function handleScroll() {
+      if (checkIfInView() && !countersAnimated) {
+        countersAnimated = true;
+        
+        // Animate each counter
+        animateCounter(document.getElementById('years'), 0, 15, 1500, '+');
+        animateCounter(document.getElementById('clients'), 0, 2500, 2000, '+');
+        animateCounter(document.getElementById('satisfaction'), 0, 98, 1800, '%');
+        
+        // The 24/7 stat doesn't need animation
+      }
+    }
+
+    // Add scroll listener for counter animation
+    window.addEventListener('scroll', handleScroll);
+    
+    // Check on page load in case stats are already in view
+    document.addEventListener('DOMContentLoaded', handleScroll);
+  </script>
+</body>
+</html>
